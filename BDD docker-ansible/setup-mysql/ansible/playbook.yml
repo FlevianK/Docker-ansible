@@ -2,12 +2,15 @@
 - hosts: localhost
   connection: local
   tasks:
-  - name: install mysql
+  - name: install mysql and nginx
     apt:
       name: "{{ item }}"
       state: installed
     with_items:
     - mysql-server
+    - nginx
   
   - name: start mysql
     service: name=mysql state=started enabled=true
+  - name: start nginx
+    service: name=nginx state=started enabled=true
